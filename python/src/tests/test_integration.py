@@ -11,26 +11,26 @@ class TestIntegration(unittest.TestCase):
     @tags("integration")
     def test_single_input(self):
         """Evaluate 1 + 1 in the REPL"""
-        calc = subprocess.Popen('python3 -u calculator.py'.split(),
+        parse = subprocess.Popen('python3 -u parse.py'.split(),
                                 stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                 encoding='utf8')
-        output, err = calc.communicate("1 + 1\n", 1)
+        output, err = parse.communicate("1 + 1\n", 1)
         self.assertTrue(output.startswith(">"))    # Check for presence of prompt
         answer = output[1:].split()[0]             # Separate prompt from answer
         self.assertEqual(answer.strip(), "2")
-        calc.terminate()
+        parse.terminate()
 
     @weight(2)
     @tags("integration")
     def test_quit(self):
         """Quit the REPL"""
-        calc = subprocess.Popen('python3 -u calculator.py'.split(),
+        parse = subprocess.Popen('python3 -u parse.py'.split(),
                                 stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                 encoding='utf8')
-        calc.communicate("quit\n", 1)
+        parse.communicate("quit\n", 1)
 
-        returncode = calc.returncode
+        returncode = parse.returncode
         if returncode is None:
-            calc.terminate()
+            parse.terminate()
         self.assertIsNotNone(returncode)
         self.assertEqual(returncode, 0)
