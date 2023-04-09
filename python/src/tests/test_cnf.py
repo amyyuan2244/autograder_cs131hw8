@@ -1,6 +1,6 @@
 import unittest
 from gradescope_utils.autograder_utils.decorators import weight, visibility, number
-from parse import cyk, cnf, parse
+from parse import cnf
 
 
 class TestComplex(unittest.TestCase):
