@@ -11,7 +11,7 @@ class TestComplex(unittest.TestCase):
     @visibility('after_due_date')
     @number("2.1")
     def test_eval_parens(self):
-        """R1, "S", "01", {}"""
+        """cyk(R1, "S", "01", {})"""
         val = self.cyk.eval("(R1, "S", "01", {})")
         self.assertEqual(val, "(True, (’S’, (’A’, ’0’), (’B’, ’1’)))")
 
@@ -19,7 +19,7 @@ class TestComplex(unittest.TestCase):
     @visibility('after_due_date')
     @number("2.2")
     def test_eval_precedence(self):
-        """R1, "S", "0011", {}"""
+        """cyk(R1, "S", "0011", {})"""
         val = self.cyk.eval("(R1, "S", "0011", {})")
         self.assertEqual(val, "(True, (’S’, (’C’, (’A’, ’0’), (’S’, (’A’, ’0’), (’B’, ’1’))), (’B’, ’1’)))")
 
