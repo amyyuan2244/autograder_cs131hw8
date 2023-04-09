@@ -1,11 +1,11 @@
 import unittest
 from gradescope_utils.autograder_utils.decorators import weight, number
-from calculator import Calculator
+from parse import cnf
 
 
 class TestSimpleArithmetic(unittest.TestCase):
     def setUp(self):
-        self.calc = Calculator()
+        self.cnf = cnf()
 
     @weight(1)
     @number("1.1")
